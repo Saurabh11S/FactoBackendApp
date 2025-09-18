@@ -14,6 +14,7 @@ import subServiceRequirementRoute from "./subServiceRequirement.route"
 import paymentRoute from "./paymnt.route"
 import quotationRoute from "./quotation.route"
 import applicationRoute from "./applicationRoute"
+import configRoute from "./config.route"
 import { handleMulterError, uploadIcon } from "@/middlewares/upload";
 import { AuthRequest } from "@/middlewares/auth";
 import bigPromise from "@/middlewares/bigPromise";
@@ -35,6 +36,7 @@ router.use("/requirements",subServiceRequirementRoute);
 router.use("/payment",paymentRoute);
 router.use("/quotation",quotationRoute);
 router.use("/application",applicationRoute);
+router.use("/config",configRoute)
 router.post('/image', uploadIcon,bigPromise(async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {console.log("ho")
     // Check if the file was uploaded
@@ -54,7 +56,7 @@ router.post('/image', uploadIcon,bigPromise(async (req: AuthRequest, res: Respon
 router.get("/", (req: Request, res: Response) => {
   res.status(200).send({
     uptime: process.uptime(),
-    message: "Shivam's API health check :: GOOD",
+    message: "API health check :: GOOD",
     timestamp: Date.now(),
   });
 });
